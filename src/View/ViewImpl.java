@@ -9,7 +9,7 @@ import Model.User.User;
  */
 public class ViewImpl extends javax.swing.JFrame implements View{
     private final Control control;
-    private static User currentUser;
+    private User currentUser = null;
     
     /**
      * Creates new form ViewImpl
@@ -18,6 +18,13 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     public ViewImpl(Control control) {
         initComponents();
         this.control = control;
+    }
+    
+    public ViewImpl(Control control, User user){
+        initComponents();
+        this.control = control;
+        this.currentUser = user;
+        fillUserData();
     }
 
     /**
@@ -29,14 +36,48 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        signButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableProducts = new javax.swing.JTable();
+        shoppingButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Sign Up/In");
+        signButton.setText("Sign Up/In");
+        signButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signButtonActionPerformed(evt);
+            }
+        });
+
+        tableProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Code", "Name", "Price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableProducts);
+        if (tableProducts.getColumnModel().getColumnCount() > 0) {
+            tableProducts.getColumnModel().getColumn(0).setResizable(false);
+            tableProducts.getColumnModel().getColumn(1).setResizable(false);
+            tableProducts.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        shoppingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/shopping-cart.png"))); // NOI18N
+        shoppingButton.setText("(0)");
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -50,24 +91,44 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(448, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(signButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(shoppingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(signButton)
+                    .addComponent(shoppingButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    protected static void setCurrentUser(User newUser){
-        currentUser = newUser;
+    private void signButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signButtonActionPerformed
+        this.setVisible(false);
+        new LoginView(control).setVisible(true);
+    }//GEN-LAST:event_signButtonActionPerformed
+
+    private void fillUserData(){
+        this.signButton.setText(currentUser.getUserName());
+        this.shoppingButton.setText("("+getSizeList()+")");
+    }
+    
+    private int getSizeList(){
+        if(currentUser.getProducts().isEmpty()) return 0;
+        else return currentUser.getProducts().size() + 1;
     }
     
     @Override
@@ -77,9 +138,12 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton shoppingButton;
+    private javax.swing.JButton signButton;
+    private javax.swing.JTable tableProducts;
     // End of variables declaration//GEN-END:variables
 }

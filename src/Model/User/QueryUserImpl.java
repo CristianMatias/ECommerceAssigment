@@ -31,6 +31,7 @@ public class QueryUserImpl implements QueryUser {
             String password = RC4.decrypt((String) query.getSingleResult(), User.KEY);
             return password.equals(user.getPassword());
         }catch(Exception ex){
+            ex.printStackTrace();
             return false;
         }
     }

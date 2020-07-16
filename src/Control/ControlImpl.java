@@ -1,6 +1,7 @@
 package Control;
 
 import Model.Model;
+import Model.User.User;
 
 /**
  * 
@@ -11,6 +12,16 @@ public class ControlImpl implements Control {
 
     public ControlImpl(Model model) {
         this.model = model;
+    }
+
+    @Override
+    public boolean signUpUser(User user) {
+        return model.signUpUser(user);
+    }
+
+    @Override
+    public boolean logInUser(User user) {
+        return model.logInUser(user);
     }
     
     

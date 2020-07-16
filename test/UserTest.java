@@ -63,9 +63,4 @@ public class UserTest {
         user.setPassword("12345");
         assertFalse(new QueryUserImpl().logInUser(user));
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

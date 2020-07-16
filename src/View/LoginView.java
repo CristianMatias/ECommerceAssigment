@@ -9,6 +9,7 @@ import Control.Control;
 import Model.User.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,6 +75,11 @@ public class LoginView extends javax.swing.JFrame {
         });
 
         signInButton.setText("Sign In");
+        signInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signInButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,12 +166,35 @@ public class LoginView extends javax.swing.JFrame {
                 User newUser = new User();
                 newUser.setUserName(newNameField.getText());
                 newUser.setPassword(newPassField.getText());
+                newUser.setRole("Buyer");
+                
+                if(control.signUpUser(newUser)) close(newUser);
             } catch (Exception ex) {
                 Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_signUpButtonActionPerformed
 
+    private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
+        try {
+            User LogUser = new User();
+            LogUser.setUserName(nameField.getText());
+            LogUser.setPassword(passField.getText());
+            
+            if(control.logInUser(LogUser)) close(LogUser);
+            else  JOptionPane.showMessageDialog(null, "User or password incorrect");
+            
+        } catch (Exception ex) {
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_signInButtonActionPerformed
+
+    private void close(User user){
+        JOptionPane.showMessageDialog(null, "Welcome to the App, "+user.getUserName());
+        new ViewImpl(control, user).setVisible(true);
+        this.setVisible(false);
+    }
+    
     private boolean checkPasswordsEquals(){
         return newPassField.getText().equals(confirmPassField.getText());
     }
