@@ -6,4 +6,5 @@ package View;
  */
 public interface View {
     public void start();
+    public void readAllItems();
 }

@@ -1,6 +1,7 @@
 package Model.Product;
 
 import Model.User.User;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
@@ -13,11 +14,11 @@ import javax.persistence.ManyToMany;
  * @author Cristian
  */
 @Entity
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     @Basic
     private String productName;
@@ -34,11 +35,11 @@ public class Product {
     @ManyToMany
     private List<User> users;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -1,7 +1,10 @@
 package View;
 
 import Control.Control;
+import Model.Product.Product;
 import Model.User.User;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +21,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     public ViewImpl(Control control) {
         initComponents();
         this.control = control;
+        readAllItems();
     }
     
     public ViewImpl(Control control, User user){
@@ -25,6 +29,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         this.control = control;
         this.currentUser = user;
         fillUserData();
+        readAllItems();
     }
 
     /**
@@ -133,10 +138,30 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         else return currentUser.getProducts().size() + 1;
     }
     
+    private void prepareTable(List<Product> products, DefaultTableModel modelTable){
+        products.forEach((product) -> {
+            Object[] row = new Object[5];
+            row[0] = product.getId();
+            row[1] = product.getProductName();
+            row[2] = product.getDescription();
+            row[3] = product.getCategory();
+            row[4] = product.getPrice();
+            
+            modelTable.addRow(row);
+        });
+        
+        tableProducts.setModel(modelTable);
+    }
+    
     @Override
     public void start() {
         initComponents();
         this.setVisible(true);
+    }
+    
+    @Override
+    public void readAllItems() {
+        prepareTable(control.getAllProducts(), (DefaultTableModel) tableProducts.getModel());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -148,4 +173,6 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     private javax.swing.JButton signButton;
     private javax.swing.JTable tableProducts;
     // End of variables declaration//GEN-END:variables
+
+    
 }
