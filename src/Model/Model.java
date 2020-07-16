@@ -13,4 +13,5 @@ public interface Model {
     public boolean logInUser(User user);
     public boolean loadDefaultProducts();
     public List<Product> getAllProducts();
+    public List<Product> getProductsByName(String name);
 }

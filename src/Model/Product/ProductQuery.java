@@ -11,4 +11,5 @@ public interface ProductQuery {
     public boolean endTransaction();
     public boolean insertProducts();
     public List<Product> getAllProducts();
+    public List<Product> getProductsByName(String name);
 }

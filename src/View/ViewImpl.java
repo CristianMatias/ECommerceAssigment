@@ -3,6 +3,8 @@ package View;
 import Control.Control;
 import Model.Product.Product;
 import Model.User.User;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,6 +47,9 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProducts = new javax.swing.JTable();
         shoppingButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        nameSearch = new javax.swing.JTextField();
+        loadProducts = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -85,6 +90,26 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         shoppingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/shopping-cart.png"))); // NOI18N
         shoppingButton.setText("(0)");
 
+        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/search.png"))); // NOI18N
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        nameSearch.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                nameSearchCaretUpdate(evt);
+            }
+        });
+
+        loadProducts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/product.png"))); // NOI18N
+        loadProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadProductsActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -102,7 +127,13 @@ public class ViewImpl extends javax.swing.JFrame implements View{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 368, Short.MAX_VALUE)
+                        .addGap(9, 9, 9)
+                        .addComponent(nameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(loadProducts)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                         .addComponent(signButton)
                         .addGap(18, 18, 18)
                         .addComponent(shoppingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -111,13 +142,18 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(signButton)
-                    .addComponent(shoppingButton))
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(signButton)
+                            .addComponent(shoppingButton)
+                            .addComponent(loadProducts))
+                        .addComponent(nameSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,6 +163,18 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         this.setVisible(false);
         new LoginView(control).setVisible(true);
     }//GEN-LAST:event_signButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        prepareTable(control.getProductsByName(nameSearch.getText()), (DefaultTableModel) tableProducts.getModel());
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void loadProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadProductsActionPerformed
+        prepareTable(control.getAllProducts(), (DefaultTableModel) tableProducts.getModel());
+    }//GEN-LAST:event_loadProductsActionPerformed
+
+    private void nameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_nameSearchCaretUpdate
+        if(nameSearch.getText() != null) searchButtonActionPerformed(new ActionEvent(evt, WIDTH, ""));
+    }//GEN-LAST:event_nameSearchCaretUpdate
 
     private void fillUserData(){
         this.signButton.setText(currentUser.getUserName());
@@ -139,6 +187,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     }
     
     private void prepareTable(List<Product> products, DefaultTableModel modelTable){
+        deleteRows(modelTable.getRowCount(), modelTable);
         products.forEach((product) -> {
             Object[] row = new Object[5];
             row[0] = product.getId();
@@ -153,9 +202,14 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         tableProducts.setModel(modelTable);
     }
     
+    private static void deleteRows(int rows, DefaultTableModel model){
+        for (int i = rows - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+    }
+    
     @Override
     public void start() {
-        initComponents();
         this.setVisible(true);
     }
     
@@ -169,6 +223,9 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton loadProducts;
+    private javax.swing.JTextField nameSearch;
+    private javax.swing.JButton searchButton;
     private javax.swing.JButton shoppingButton;
     private javax.swing.JButton signButton;
     private javax.swing.JTable tableProducts;

@@ -70,5 +70,11 @@ public class ProductQueryImpl implements ProductQuery {
         query = connection.createQuery("SELECT p FROM Product p");
         return query.getResultList();
     }
+
+    @Override
+    public List<Product> getProductsByName(String name) {
+        query = connection.createQuery("SELECT p FROM Product p WHERE p.productName like '%"+name+"%'");
+        return query.getResultList();
+    }
     
 }

@@ -40,5 +40,10 @@ public class ModelImpl implements Model {
     public List<Product> getAllProducts() {
         return productQuery.getAllProducts();
     }
+
+    @Override
+    public List<Product> getProductsByName(String name) {
+        return productQuery.getProductsByName(name);
+    }
     
 }

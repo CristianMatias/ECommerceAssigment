@@ -65,6 +65,10 @@ public class LoginView extends javax.swing.JFrame {
 
         jLabel6.setText("Repeat Password:");
 
+        nameField.setText("Admin");
+
+        passField.setText("1234");
+
         jLabel7.setText("Password:");
 
         signUpButton.setText("Sign Up");

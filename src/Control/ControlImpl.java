@@ -35,6 +35,11 @@ public class ControlImpl implements Control {
     public List<Product> getAllProducts() {
         return model.getAllProducts();
     }
+
+    @Override
+    public List<Product> getProductsByName(String name) {
+        return model.getProductsByName(name);
+    }
     
     
 }

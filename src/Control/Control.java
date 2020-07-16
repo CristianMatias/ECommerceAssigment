@@ -13,4 +13,5 @@ public interface Control {
     public boolean logInUser(User user);
     public boolean insertDefaultProducts();
     public List<Product> getAllProducts();
+    public List<Product> getProductsByName(String name);
 }

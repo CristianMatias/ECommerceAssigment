@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
+import Model.Product.Product;
 import Model.Product.ProductQueryImpl;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,9 +39,17 @@ public class ItemsTest {
     public void tearDown() {
     }
     
-    @Test
+    //@Test
     public void insertDefaultProductsTest(){
         assertTrue(new ProductQueryImpl().insertProducts());
+    }
+    
+    @Test
+    public void searchItemsTest(){
+        String expected = "Product{id=39, productName=profe, price=12.0, description=prueba, category=ORO, users=null}";
+        List<Product> products = new ProductQueryImpl().getProductsByName("profe");
+        
+        assertEquals(expected, products.get(0).toString());
     }
 
     // TODO add test methods here.
