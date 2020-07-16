@@ -46,6 +46,8 @@
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="description" pname="attribute" id="_15948977159826"/>
+            <jpa:basic attribute-type="String" v="true" name="category" pname="attribute" id="_15948977216277"/>
             <jpa:many-to-many own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_15948870572043" connected-attribute-id="_159488716171315" v="true" xvt="" name="users" id="_159488716170414">
                 <jpa:xwm/>
                 <jpa:xm/>
@@ -64,6 +66,12 @@
         </jpa:nq>
         <jpa:nq e="false" name="Product.findByPrice">
             <jpa:query>Select p from Product p where p.price=:price</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Product.findByDescription">
+            <jpa:query>Select p from Product p where p.description=:description</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Product.findByCategory">
+            <jpa:query>Select p from Product p where p.category=:category</jpa:query>
         </jpa:nq>
     </jpa:entity>
     <jpa:wsl>

@@ -24,6 +24,12 @@ public class Product {
 
     @Basic
     private double price;
+    
+    @Basic
+    private String description;
+    
+    @Basic
+    private String category;
 
     @ManyToMany
     private List<User> users;
@@ -73,4 +79,21 @@ public class Product {
         user.getProducts().remove(this);
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
 }

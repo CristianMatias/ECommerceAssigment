@@ -1,7 +1,9 @@
 package Control;
 
 import Model.Model;
+import Model.Product.Product;
 import Model.User.User;
+import java.util.List;
 
 /**
  * 
@@ -22,6 +24,16 @@ public class ControlImpl implements Control {
     @Override
     public boolean logInUser(User user) {
         return model.logInUser(user);
+    }
+
+    @Override
+    public boolean insertDefaultProducts() {
+        return model.loadDefaultProducts();
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return model.getAllProducts();
     }
     
     

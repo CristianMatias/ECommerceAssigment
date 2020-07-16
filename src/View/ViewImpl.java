@@ -58,11 +58,11 @@ public class ViewImpl extends javax.swing.JFrame implements View{
 
             },
             new String [] {
-                "Code", "Name", "Price"
+                "Code", "Name", "Description", "Category", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -73,7 +73,8 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         if (tableProducts.getColumnModel().getColumnCount() > 0) {
             tableProducts.getColumnModel().getColumn(0).setResizable(false);
             tableProducts.getColumnModel().getColumn(1).setResizable(false);
-            tableProducts.getColumnModel().getColumn(2).setResizable(false);
+            tableProducts.getColumnModel().getColumn(3).setResizable(false);
+            tableProducts.getColumnModel().getColumn(4).setResizable(false);
         }
 
         shoppingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/shopping-cart.png"))); // NOI18N
@@ -91,11 +92,12 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 368, Short.MAX_VALUE)
                         .addComponent(signButton)
                         .addGap(18, 18, 18)
                         .addComponent(shoppingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))

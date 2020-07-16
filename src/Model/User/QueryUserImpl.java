@@ -51,5 +51,12 @@ public class QueryUserImpl implements QueryUser {
             return false;
         }
     }
+
+    @Override
+    public boolean addItemsToShoppingCart(User user) {
+        beginTransaction();
+        connection.persist(user);
+        return endTransaction();
+    }
     
 }
