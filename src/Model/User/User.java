@@ -8,31 +8,41 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.io.Serializable;
+import Main.RC4;
 
 /**
  * @author Cristian
  */
 @Entity
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     @Basic
     private String userName;
 
     @Basic
     private String password;
+    
+    @Basic
+    private String role;
 
     @ManyToMany(mappedBy = "users")
     private List<Product> products;
+    
+    public static final String KEY = "MHPSOFTWARE";
 
-    public Long getId() {
+    public User() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,12 +54,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassword() throws Exception {
+        return RC4.decrypt(password, KEY);
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) throws Exception {
+        this.password = RC4.encrypt(password, KEY);
     }
 
     public List<Product> getProducts() {
@@ -70,5 +80,15 @@ public class User {
     public void removeProduct(Product product) {
         getProducts().remove(product);
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
+    
 
 }

@@ -11,6 +11,7 @@
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" name="role" pname="attribute" id="_159489195011221"/>
             <jpa:many-to-many collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_15948870921518" connected-attribute-id="_159488716170414" v="true" xvt="" name="products" id="_159488716171315">
                 <jpa:xwm/>
                 <jpa:xm/>
@@ -29,6 +30,9 @@
         </jpa:nq>
         <jpa:nq e="false" name="User.findByPassword">
             <jpa:query>Select u from User u where u.password=:password</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="User.findByRole">
+            <jpa:query>Select u from User u where u.role=:role</jpa:query>
         </jpa:nq>
     </jpa:entity>
     <jpa:entity compositePrimaryKeyClass="ProductPK" abs="false" class="Product" v="true" jbn="false" xre="false" m="false" rootElement="_15948870014701" id="_15948870921518">
