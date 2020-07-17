@@ -184,12 +184,11 @@ public class LoginView extends javax.swing.JFrame {
             User LogUser = new User();
             LogUser.setUserName(nameField.getText());
             LogUser.setPassword(passField.getText());
-            
-            if(control.logInUser(LogUser)) close(LogUser);
-            else  JOptionPane.showMessageDialog(null, "User or password incorrect");
-            
+            User checkUser = control.logInUser(LogUser);
+            System.out.println(checkUser.getProducts().isEmpty());
+            close(checkUser);
         } catch (Exception ex) {
-            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "User or password incorrect");
         }
     }//GEN-LAST:event_signInButtonActionPerformed
 

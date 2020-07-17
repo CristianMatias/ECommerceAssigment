@@ -4,6 +4,7 @@ import Control.Control;
 import Model.Bill.Bill;
 import Model.Product.Product;
 import Model.User.User;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 /**
@@ -43,7 +44,7 @@ public class ShopView extends javax.swing.JFrame {
         paymentCombo = new javax.swing.JComboBox<>();
         buyButton = new javax.swing.JButton();
         billInfo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        removeButtom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,7 +106,12 @@ public class ShopView extends javax.swing.JFrame {
 
         readProductsFromUser();
 
-        jButton1.setText("Remove Item");
+        removeButtom.setText("Remove Item");
+        removeButtom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtomActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,7 +123,7 @@ public class ShopView extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
                 .addGap(197, 197, 197)
-                .addComponent(jButton1)
+                .addComponent(removeButtom)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,7 +132,7 @@ public class ShopView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tabbedpane, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(removeButtom)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -140,18 +146,52 @@ public class ShopView extends javax.swing.JFrame {
         newBill.setTotalPrice(getTotalPrice());
         newBill.setDirectionBuyer(directionField.getText());
         newBill.setPaymentMethod((String) paymentCombo.getSelectedItem());
+        
         if(control.createNewBill(newBill)){
             JOptionPane.showMessageDialog(null, "¡Muchas gracias por su compra!");
             user.getProducts().clear();
             new ViewImpl(control, user).setVisible(true);
             this.dispose();
-        }
+        } else JOptionPane.showMessageDialog(null, "Ha habido un error en su compra.\n "
+                + "Por favor, intentelo más tarde");
     }//GEN-LAST:event_buyButtonActionPerformed
+
+    private void removeButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtomActionPerformed
+        if(JOptionPane.showConfirmDialog(null, "Are you sure to delete this item?", "Warnign!",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
+            int index = tabbedpane.getSelectedIndex();
+            String name = tabbedpane.getTitleAt(index);
+            removeItem(name);
+        }
+    }//GEN-LAST:event_removeButtomActionPerformed
+    
+    private void removeItem(String name){
+        if(!name.equals("User data")){         
+            for(Iterator<Product> iterator = user.getProducts().iterator(); iterator.hasNext();){
+                Product currentProduct = iterator.next();
+                if(currentProduct.getProductName().equals(name)){
+                    iterator.remove();
+                    tabbedpane.remove(tabbedpane.getSelectedComponent());
+                    JOptionPane.showMessageDialog(null, "Item deleted from the list");
+                    billInfo.setText("Total (€): "+getTotalPrice());
+                }
+                    
+            }
+            
+        }
+    }
     
     private double getTotalPrice(){
-        user.getProducts().forEach((product) -> {
-            price += product.getPrice();
-        });
+        if(user.getProducts().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Select at least one product first");
+            this.setVisible(false);
+            new ViewImpl(control, user).setVisible(true);
+        }
+        else{
+            user.getProducts().forEach((product) -> {
+                price += product.getPrice();
+            });
+        }
         
         return price;
     }
@@ -167,11 +207,11 @@ public class ShopView extends javax.swing.JFrame {
     private javax.swing.JLabel billInfo;
     private javax.swing.JButton buyButton;
     private javax.swing.JTextField directionField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> paymentCombo;
+    private javax.swing.JButton removeButtom;
     private javax.swing.JTabbedPane tabbedpane;
     // End of variables declaration//GEN-END:variables
 }

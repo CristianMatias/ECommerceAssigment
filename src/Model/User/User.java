@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.io.Serializable;
 import Main.RC4;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Cristian
@@ -30,7 +33,7 @@ public class User implements Serializable {
     @Basic
     private String role;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Product> products;
     
     public static final String KEY = "MHPSOFTWARE";

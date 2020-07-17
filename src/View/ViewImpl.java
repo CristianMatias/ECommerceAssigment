@@ -5,6 +5,7 @@ import Model.Product.Product;
 import Model.User.User;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -135,11 +136,10 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                        .addGap(15, 15, 15)
                         .addComponent(nameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchButton)
@@ -167,8 +167,8 @@ public class ViewImpl extends javax.swing.JFrame implements View{
                         .addComponent(nameSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -201,12 +201,24 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         product.setPrice((double) tableProducts.getValueAt(tableProducts.getSelectedRow(), 4));
         
         currentUser.addProduct(product);
+        System.out.println("Add: "+control.addItemsToShoppingCart(currentUser));
         fillUserData();
         
     }//GEN-LAST:event_addItemActionPerformed
 
     private void shoppingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shoppingButtonActionPerformed
-        new ShopView(control, currentUser).setVisible(true);
+        if(currentUser == null) {
+            JOptionPane.showMessageDialog(null, "You have to LogIn first");
+            new LoginView(control).setVisible(true);
+            this.setVisible(false);
+        }
+        else if(currentUser.getProducts().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Select at least one product first");
+        }
+        else {
+            new ShopView(control, currentUser).setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_shoppingButtonActionPerformed
 
     private void fillUserData(){
@@ -215,7 +227,10 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     }
     
     private int getSizeList(){
-        if(currentUser.getProducts().isEmpty()) return 0;
+        if(currentUser.getProducts().isEmpty()) {
+            System.out.println("Empty: true");
+            return 0;
+        }
         else return currentUser.getProducts().size();
     }
     

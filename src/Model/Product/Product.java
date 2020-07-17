@@ -5,10 +5,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  * @author Cristian
@@ -32,8 +35,8 @@ public class Product implements Serializable {
     @Basic
     private String category;
 
-    @ManyToMany
-    private List<User> users;
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private User user;
 
     public int getId() {
         return id;
@@ -59,25 +62,12 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public List<User> getUsers() {
-        if (users == null) {
-            users = new ArrayList<>();
-        }
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public void addUser(User user) {
-        getUsers().add(user);
-        user.getProducts().add(this);
-    }
-
-    public void removeUser(User user) {
-        getUsers().remove(user);
-        user.getProducts().remove(this);
+    public void setUsers(User users) {
+        this.user = users;
     }
 
     public String getCategory() {
@@ -98,7 +88,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", productName=" + productName + ", price=" + price + ", description=" + description + ", category=" + category + ", users=" + users + '}';
+        return "Product{" + "id=" + id + ", productName=" + productName + ", price=" + price + ", description=" + description + ", category=" + category + ", users=" + user + '}';
     }
 
     

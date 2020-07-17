@@ -32,7 +32,7 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public boolean logInUser(User user) {
+    public User logInUser(User user) {
         return userQuery.logInUser(user);
     }
 

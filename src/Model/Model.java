@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface Model {
     public boolean signUpUser(User user);
-    public boolean logInUser(User user);
+    public User logInUser(User user);
     public boolean loadDefaultProducts();
     public List<Product> getAllProducts();
     public List<Product> getProductsByName(String name);

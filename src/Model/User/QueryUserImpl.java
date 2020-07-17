@@ -25,14 +25,14 @@ public class QueryUserImpl implements QueryUser {
     }
 
     @Override
-    public boolean logInUser(User user) {
+    public User logInUser(User user) {
         try{
             query = connection.createQuery("SELECT u.password from User u WHERE u.userName = \""+user.getUserName()+"\"");
             String password = RC4.decrypt((String) query.getSingleResult(), User.KEY);
-            return password.equals(user.getPassword());
+            if(password.equals(user.getPassword())) return user;
+            else return null;
         }catch(Exception ex){
-            ex.printStackTrace();
-            return false;
+            return null;
         }
     }
 
@@ -57,6 +57,11 @@ public class QueryUserImpl implements QueryUser {
         beginTransaction();
         connection.persist(user);
         return endTransaction();
+    }
+    
+    public User getUser(String name){
+        query = connection.createQuery("SELECT u FROM User u WHERE u.userName = \""+name+"\"");
+        return (User) query.getSingleResult();
     }
     
 }
