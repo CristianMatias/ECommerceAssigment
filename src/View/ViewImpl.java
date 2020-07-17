@@ -4,7 +4,6 @@ import Control.Control;
 import Model.Product.Product;
 import Model.User.User;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,6 +49,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         searchButton = new javax.swing.JButton();
         nameSearch = new javax.swing.JTextField();
         loadProducts = new javax.swing.JButton();
+        addItem = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -89,6 +89,11 @@ public class ViewImpl extends javax.swing.JFrame implements View{
 
         shoppingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/shopping-cart.png"))); // NOI18N
         shoppingButton.setText("(0)");
+        shoppingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shoppingButtonActionPerformed(evt);
+            }
+        });
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/search.png"))); // NOI18N
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +112,13 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         loadProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadProductsActionPerformed(evt);
+            }
+        });
+
+        addItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/buy.png"))); // NOI18N
+        addItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addItemActionPerformed(evt);
             }
         });
 
@@ -133,7 +145,9 @@ public class ViewImpl extends javax.swing.JFrame implements View{
                         .addComponent(searchButton)
                         .addGap(18, 18, 18)
                         .addComponent(loadProducts)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addItem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(signButton)
                         .addGap(18, 18, 18)
                         .addComponent(shoppingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -148,7 +162,8 @@ public class ViewImpl extends javax.swing.JFrame implements View{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(signButton)
                             .addComponent(shoppingButton)
-                            .addComponent(loadProducts))
+                            .addComponent(loadProducts)
+                            .addComponent(addItem))
                         .addComponent(nameSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,6 +191,25 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         if(nameSearch.getText() != null) searchButtonActionPerformed(new ActionEvent(evt, WIDTH, ""));
     }//GEN-LAST:event_nameSearchCaretUpdate
 
+    private void addItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemActionPerformed
+        Product product = new Product();
+        
+        product.setId((int) tableProducts.getValueAt(tableProducts.getSelectedRow(), 0));
+        product.setProductName((String) tableProducts.getValueAt(tableProducts.getSelectedRow(), 1));
+        product.setDescription((String) tableProducts.getValueAt(tableProducts.getSelectedRow(), 2));
+        product.setCategory((String) tableProducts.getValueAt(tableProducts.getSelectedRow(), 3));
+        product.setPrice((double) tableProducts.getValueAt(tableProducts.getSelectedRow(), 4));
+        
+        currentUser.addProduct(product);
+        System.out.println(control.addItemsToShoppingCart(currentUser));
+        fillUserData();
+        
+    }//GEN-LAST:event_addItemActionPerformed
+
+    private void shoppingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shoppingButtonActionPerformed
+        new ShopView(currentUser).setVisible(true);
+    }//GEN-LAST:event_shoppingButtonActionPerformed
+
     private void fillUserData(){
         this.signButton.setText(currentUser.getUserName());
         this.shoppingButton.setText("("+getSizeList()+")");
@@ -183,7 +217,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     
     private int getSizeList(){
         if(currentUser.getProducts().isEmpty()) return 0;
-        else return currentUser.getProducts().size() + 1;
+        else return currentUser.getProducts().size();
     }
     
     private void prepareTable(List<Product> products, DefaultTableModel modelTable){
@@ -219,6 +253,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

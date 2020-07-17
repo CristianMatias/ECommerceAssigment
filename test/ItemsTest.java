@@ -39,7 +39,7 @@ public class ItemsTest {
     public void tearDown() {
     }
     
-    //@Test
+    @Test
     public void insertDefaultProductsTest(){
         assertTrue(new ProductQueryImpl().insertProducts());
     }
@@ -51,10 +51,4 @@ public class ItemsTest {
         
         assertEquals(expected, products.get(0).toString());
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

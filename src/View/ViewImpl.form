@@ -51,7 +51,9 @@
                       <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="loadProducts" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="135" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="addItem" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="77" max="32767" attributes="0"/>
                       <Component id="signButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="shoppingButton" min="-2" pref="84" max="-2" attributes="0"/>
@@ -71,6 +73,7 @@
                           <Component id="signButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="shoppingButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="loadProducts" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addItem" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="nameSearch" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -153,6 +156,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="(0)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shoppingButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="searchButton">
       <Properties>
@@ -177,6 +183,16 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadProductsActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="addItem">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/View/img/buy.png"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addItemActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -40,6 +40,11 @@ public class ControlImpl implements Control {
     public List<Product> getProductsByName(String name) {
         return model.getProductsByName(name);
     }
+
+    @Override
+    public boolean addItemsToShoppingCart(User user) {
+        return model.addItemsToShoppingCart(user);
+    }
     
     
 }

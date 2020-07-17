@@ -45,5 +45,10 @@ public class ModelImpl implements Model {
     public List<Product> getProductsByName(String name) {
         return productQuery.getProductsByName(name);
     }
+
+    @Override
+    public boolean addItemsToShoppingCart(User user) {
+        return userQuery.addItemsToShoppingCart(user);
+    }
     
 }

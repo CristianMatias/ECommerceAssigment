@@ -14,4 +14,5 @@ public interface Model {
     public boolean loadDefaultProducts();
     public List<Product> getAllProducts();
     public List<Product> getProductsByName(String name);
+    public boolean addItemsToShoppingCart(User user);
 }
