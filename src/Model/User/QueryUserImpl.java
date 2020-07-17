@@ -27,9 +27,9 @@ public class QueryUserImpl implements QueryUser {
     @Override
     public User logInUser(User user) {
         try{
-            query = connection.createQuery("SELECT u.password from User u WHERE u.userName = \""+user.getUserName()+"\"");
-            String password = RC4.decrypt((String) query.getSingleResult(), User.KEY);
-            if(password.equals(user.getPassword())) return user;
+            query = connection.createQuery("SELECT u from User u WHERE u.userName = \""+user.getUserName()+"\"");
+            User actualUser = (User) query.getSingleResult();
+            if(actualUser.getPassword().equals(user.getPassword())) return actualUser;
             else return null;
         }catch(Exception ex){
             return null;

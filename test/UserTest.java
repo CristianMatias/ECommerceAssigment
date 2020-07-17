@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import Model.Product.Product;
+import Model.Product.ProductQueryImpl;
 import Model.User.QueryUserImpl;
 import Model.User.User;
 import org.junit.After;
@@ -22,46 +24,38 @@ public class UserTest {
     public UserTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    @Test
-    public void signUpTest() throws Exception{
-        User user = new User();
-        user.setUserName("Admin2");
-        user.setPassword("1234");
-        user.setRole("Admin");
-        assertTrue(new QueryUserImpl().signUpUser(user));
-    }
-    
 //    @Test
-//    public void logInTest() throws Exception{
+//    public void signUpTest() throws Exception{
 //        User user = new User();
-//        user.setUserName("prueba");
+//        user.setUserName("Admin2");
 //        user.setPassword("1234");
-//        user.setRole("Buyer");
-//        assertTrue(new QueryUserImpl().logInUser(user));
-//        
+//        user.setRole("Admin");
+//        assertTrue(new QueryUserImpl().signUpUser(user));
 //    }
-//    
-//    @Test
-//    public void logInFailedTest() throws Exception{
-//        User user = new User();
-//        user.setUserName("prueba");
-//        user.setPassword("12345");
-//        assertFalse(new QueryUserImpl().logInUser(user));
-//    }
+    
+    @Test(expected = NullPointerException.class)
+    public void logInTest() throws Exception{
+        User user = new User();
+        user.setUserName("User");
+        user.setPassword("1234");
+        assertNotEquals(null, new QueryUserImpl().logInUser(user).getUserName());
+        
+    }
+    
+    @Test
+    public void logInFailedTest() throws Exception{
+        User user = new User();
+        user.setUserName("prueba");
+        user.setPassword("12345");
+        assertEquals(null,new QueryUserImpl().logInUser(user));
+    }
+    
+    @Test
+    public void fixBugDontSaveProducts(){
+        User user = new QueryUserImpl().getUser("User");
+        Product p = new ProductQueryImpl().getAllProducts().get(0);
+        user.addProduct(p);
+        new QueryUserImpl().addItemsToShoppingCart(user);
+        assertEquals(6, new QueryUserImpl().getUser("User").getProducts().size());
+    }
 }

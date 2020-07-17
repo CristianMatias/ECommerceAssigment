@@ -188,6 +188,7 @@ public class ShopView extends javax.swing.JFrame {
             new ViewImpl(control, user).setVisible(true);
         }
         else{
+            price = 0;
             user.getProducts().forEach((product) -> {
                 price += product.getPrice();
             });

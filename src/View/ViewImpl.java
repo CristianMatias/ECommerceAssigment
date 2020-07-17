@@ -228,7 +228,6 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     
     private int getSizeList(){
         if(currentUser.getProducts().isEmpty()) {
-            System.out.println("Empty: true");
             return 0;
         }
         else return currentUser.getProducts().size();
