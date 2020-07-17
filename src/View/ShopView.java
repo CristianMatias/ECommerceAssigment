@@ -1,23 +1,29 @@
 package View;
 
+import Control.Control;
+import Model.Bill.Bill;
 import Model.Product.Product;
 import Model.User.User;
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Cristian
  */
 public class ShopView extends javax.swing.JFrame {
+    private final Control control;
     private final User user;
+    private double price = 0;
     
     /**
      * Creates new form ShopView
+     * @param control
      * @param user
      */
-    public ShopView(User user) {
+    public ShopView(Control control, User user) {
+        this.control = control;
         this.user = user;
         initComponents();
-        readProductsFromUser();
     }
 
     /**
@@ -29,29 +35,143 @@ public class ShopView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tabbedpane = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        directionField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        paymentCombo = new javax.swing.JComboBox<>();
+        buyButton = new javax.swing.JButton();
+        billInfo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Direction:");
+
+        jLabel2.setText("Payment method:");
+
+        paymentCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PayPal", "MasterCard", "Tarjeta Debito", "Contrareembolso", "Cuenta Bancaria" }));
+
+        buyButton.setText("Buy current Items");
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
+            }
+        });
+
+        billInfo.setText("Total (€): ");
+        billInfo.setText("Total (€): "+getTotalPrice());
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(33, 33, 33)
+                            .addComponent(directionField, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(27, 27, 27)
+                            .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(billInfo)))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(directionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(billInfo)
+                .addGap(18, 18, 18)
+                .addComponent(buyButton)
+                .addGap(9, 9, 9))
+        );
+
+        tabbedpane.addTab("User data", jPanel1);
+
+        readProductsFromUser();
+
+        jButton1.setText("Remove Item");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(tabbedpane, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabbedpane, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        Bill newBill = new Bill();
+        newBill.setProducts(user.getProducts());
+        newBill.setUser(user);
+        newBill.setTotalPrice(getTotalPrice());
+        newBill.setDirectionBuyer(directionField.getText());
+        newBill.setPaymentMethod((String) paymentCombo.getSelectedItem());
+        if(control.createNewBill(newBill)){
+            JOptionPane.showMessageDialog(null, "¡Muchas gracias por su compra!");
+            user.getProducts().clear();
+            new ViewImpl(control, user).setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_buyButtonActionPerformed
+    
+    private double getTotalPrice(){
+        user.getProducts().forEach((product) -> {
+            price += product.getPrice();
+        });
+        
+        return price;
+    }
+    
     private void readProductsFromUser() {
         List<Product> products = user.getProducts();
         
         products.forEach((product) -> {
-            System.out.println(product);
+            tabbedpane.add(new ProductPane(product),product.getProductName());
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel billInfo;
+    private javax.swing.JButton buyButton;
+    private javax.swing.JTextField directionField;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> paymentCombo;
+    private javax.swing.JTabbedPane tabbedpane;
     // End of variables declaration//GEN-END:variables
 }

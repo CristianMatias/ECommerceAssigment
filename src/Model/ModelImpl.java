@@ -1,5 +1,8 @@
 package Model;
 
+import Model.Bill.Bill;
+import Model.Bill.BillQuery;
+import Model.Bill.BillQueryImpl;
 import Model.Product.Product;
 import Model.Product.ProductQuery;
 import Model.Product.ProductQueryImpl;
@@ -15,10 +18,12 @@ import java.util.List;
 public class ModelImpl implements Model {
     private final QueryUser userQuery;
     private final ProductQuery productQuery;
+    private final BillQuery billQuery;
 
     public ModelImpl() {
         this.userQuery = new QueryUserImpl();
         this.productQuery = new ProductQueryImpl();
+        this.billQuery = new BillQueryImpl();
     }
     
     @Override
@@ -49,6 +54,21 @@ public class ModelImpl implements Model {
     @Override
     public boolean addItemsToShoppingCart(User user) {
         return userQuery.addItemsToShoppingCart(user);
+    }
+
+    @Override
+    public List<Bill> getAllBills() {
+        return billQuery.getAllBills();
+    }
+
+    @Override
+    public boolean createNewBill(Bill bill) {
+        return billQuery.createNewBill(bill);
+    }
+
+    @Override
+    public boolean validateAllBills(Bill bill) {
+        return billQuery.validateBills(bill);
     }
     
 }

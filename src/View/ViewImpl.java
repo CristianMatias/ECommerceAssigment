@@ -201,13 +201,12 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         product.setPrice((double) tableProducts.getValueAt(tableProducts.getSelectedRow(), 4));
         
         currentUser.addProduct(product);
-        System.out.println(control.addItemsToShoppingCart(currentUser));
         fillUserData();
         
     }//GEN-LAST:event_addItemActionPerformed
 
     private void shoppingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shoppingButtonActionPerformed
-        new ShopView(currentUser).setVisible(true);
+        new ShopView(control, currentUser).setVisible(true);
     }//GEN-LAST:event_shoppingButtonActionPerformed
 
     private void fillUserData(){

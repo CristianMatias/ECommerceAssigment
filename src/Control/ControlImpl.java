@@ -1,5 +1,6 @@
 package Control;
 
+import Model.Bill.Bill;
 import Model.Model;
 import Model.Product.Product;
 import Model.User.User;
@@ -44,6 +45,21 @@ public class ControlImpl implements Control {
     @Override
     public boolean addItemsToShoppingCart(User user) {
         return model.addItemsToShoppingCart(user);
+    }
+
+    @Override
+    public List<Bill> getAllBills() {
+        return model.getAllBills();
+    }
+
+    @Override
+    public boolean createNewBill(Bill bill) {
+        return model.createNewBill(bill);
+    }
+
+    @Override
+    public boolean validateAllBills(Bill bill) {
+        return model.validateAllBills(bill);
     }
     
     

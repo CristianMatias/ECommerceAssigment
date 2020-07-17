@@ -11,7 +11,10 @@
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" name="role" pname="attribute" id="_159489195011221"/>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="role" id="_159489195011221">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
             <jpa:many-to-many collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_15948870921518" connected-attribute-id="_159488716170414" v="true" xvt="" name="products" id="_159488716171315">
                 <jpa:xwm/>
                 <jpa:xm/>
@@ -46,8 +49,14 @@
                 <jpa:xwm/>
                 <jpa:xm/>
             </jpa:basic>
-            <jpa:basic attribute-type="String" v="true" name="description" pname="attribute" id="_15948977159826"/>
-            <jpa:basic attribute-type="String" v="true" name="category" pname="attribute" id="_15948977216277"/>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="description" id="_15948977159826">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="category" id="_15948977216277">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
             <jpa:many-to-many own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_15948870572043" connected-attribute-id="_159488716171315" v="true" xvt="" name="users" id="_159488716170414">
                 <jpa:xwm/>
                 <jpa:xm/>
@@ -74,8 +83,44 @@
             <jpa:query>Select p from Product p where p.category=:category</jpa:query>
         </jpa:nq>
     </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="BillPK" abs="false" class="Bill" v="true" jbn="false" xre="false" m="false" rootElement="_15948870014701" id="_15949849554546">
+        <jpa:ath>Cristian</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="dateCreation" id="_159498505259419">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="totalPrice" id="_159498506827620">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_15948870921518" v="true" xvt="" name="products" id="_159498504735818">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_15948870572043" v="true" xvt="" name="user" id="_159498504121616">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_15949849555527">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Bill.findAll">
+            <jpa:query>Select e from Bill e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Bill.findByDateCreation">
+            <jpa:query>Select b from Bill b where b.dateCreation=:dateCreation</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Bill.findByTotalPrice">
+            <jpa:query>Select b from Bill b where b.totalPrice=:totalPrice</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
     <jpa:wsl>
         <jpa:ws n="Main" id="_15948870014722">
+            <i ref="_15949849554546" x="336" y="305"/>
             <i ref="_15948870921518" x="509" y="73"/>
             <i ref="_15948870572043" x="164" y="72"/>
         </jpa:ws>
