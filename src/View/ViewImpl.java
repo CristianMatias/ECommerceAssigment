@@ -53,6 +53,8 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         addItem = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,6 +126,23 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         });
 
         jMenu1.setText("File");
+
+        jMenuItem1.setText("Exit");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Checkouts");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Help");
@@ -201,7 +220,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         product.setPrice((double) tableProducts.getValueAt(tableProducts.getSelectedRow(), 4));
         
         currentUser.addProduct(product);
-        System.out.println("Add: "+control.addItemsToShoppingCart(currentUser));
+        control.addItemsToShoppingCart(currentUser);
         fillUserData();
         
     }//GEN-LAST:event_addItemActionPerformed
@@ -220,6 +239,17 @@ public class ViewImpl extends javax.swing.JFrame implements View{
             this.setVisible(false);
         }
     }//GEN-LAST:event_shoppingButtonActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if(!control.getAllBills().isEmpty()) new BillingView(control).setVisible(true);
+        else{
+            JOptionPane.showMessageDialog(null, "There is not pending chekouts");
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void fillUserData(){
         this.signButton.setText(currentUser.getUserName());
@@ -270,6 +300,8 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loadProducts;
     private javax.swing.JTextField nameSearch;

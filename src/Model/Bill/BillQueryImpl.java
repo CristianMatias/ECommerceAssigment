@@ -49,7 +49,7 @@ public class BillQueryImpl implements BillQuery {
     @Override
     public boolean validateBills(Bill bill) {
         beginTransaction();
-        connection.detach(bill);
+        connection.remove(bill);
         return endTransaction();
     }
     

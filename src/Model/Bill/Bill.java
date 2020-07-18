@@ -21,7 +21,7 @@ public class Bill implements Serializable {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int id;
 
     @Basic
     private String dateCreation;
@@ -45,13 +45,11 @@ public class Bill implements Serializable {
         this.dateCreation = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH;
     }
 
-    
-    
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -113,8 +111,4 @@ public class Bill implements Serializable {
     public String getPaymentMethod() {
         return paymentMethod;
     }
-    
-    
-
-    
 }
