@@ -13,7 +13,7 @@ public class Connection {
     private static EntityManager conexion = null;
     
     private Connection(){
-        manager = Persistence.createEntityManagerFactory("ecommerce.odb");
+        manager = Persistence.createEntityManagerFactory("src/ecommerce.odb");
         conexion = manager.createEntityManager();
     }
     

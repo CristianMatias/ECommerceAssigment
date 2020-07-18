@@ -67,8 +67,13 @@ public class ProductQueryImpl implements ProductQuery {
 
     @Override
     public List<Product> getAllProducts() {
-        query = connection.createQuery("SELECT p FROM Product p");
-        return query.getResultList();
+        try{
+            query = connection.createQuery("SELECT p FROM Product p");
+            return query.getResultList();
+        }catch(Exception ex){
+            insertProducts();
+            return getAllProducts();
+        }
     }
 
     @Override
