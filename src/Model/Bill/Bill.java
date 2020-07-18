@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -39,7 +41,7 @@ public class Bill implements Serializable {
     private User user;
 
     @OneToMany
-    private List<Product> products;
+    private List<String> products;
 
     public Bill() {
         this.dateCreation = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH;
@@ -77,22 +79,22 @@ public class Bill implements Serializable {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
+    public List<String> getProducts() {
         if (products == null) {
             products = new ArrayList<>();
         }
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<String> products) {
         this.products = products;
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(String product) {
         getProducts().add(product);
     }
 
-    public void removeProduct(Product product) {
+    public void removeProduct(String product) {
         getProducts().remove(product);
     }
 

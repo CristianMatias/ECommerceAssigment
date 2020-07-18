@@ -19,4 +19,5 @@ public interface Model {
     public List<Bill> getAllBills();
     public boolean createNewBill(Bill bill);
     public boolean validateAllBills(Bill bill);
+    public boolean updateUser(User user);
 }

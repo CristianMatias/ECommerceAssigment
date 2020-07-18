@@ -58,8 +58,13 @@ public class ControlImpl implements Control {
     }
 
     @Override
-    public boolean validateAllBills(Bill bill) {
+    public boolean validateBills(Bill bill) {
         return model.validateAllBills(bill);
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        return model.updateUser(user);
     }
     
     

@@ -70,5 +70,10 @@ public class ModelImpl implements Model {
     public boolean validateAllBills(Bill bill) {
         return billQuery.validateBills(bill);
     }
+
+    @Override
+    public boolean updateUser(User user) {
+        return userQuery.updateUser(user);
+    }
     
 }

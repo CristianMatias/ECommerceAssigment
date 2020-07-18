@@ -19,16 +19,18 @@ import javax.swing.JOptionPane;
 public class BillPane extends javax.swing.JPanel {
     private final Control control;
     private final Bill bill;
+    private static BillingView billingView;
     
     /**
      * Creates new form BillPane
      * @param control
      * @param bill
      */
-    public BillPane(Control control, Bill bill) {
+    public BillPane(BillingView billingView, Control control, Bill bill) {
         initComponents();
         this.control = control;
         this.bill = bill;
+        BillPane.billingView = billingView;
         fillInformation();
     }
     
@@ -44,7 +46,7 @@ public class BillPane extends javax.swing.JPanel {
     
     private void addProductsInformation(){
         bill.getProducts().forEach((product) -> {
-            productsField.append(product.getProductName()+" - "+product.getCategory()+" - "+product.getPrice()+" €\n");
+            productsField.append(product+"\n");
         });
     }
 
@@ -168,10 +170,12 @@ public class BillPane extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void validateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validateButtonActionPerformed
-        if(control.validateAllBills(bill)){
+        if(control.validateBills(bill)){
             try {
                 JOptionPane.showMessageDialog(null, "Checkout validated");
                 createBillFile();
+                billingView.removeSelectedTab();
+                if(control.getAllBills().isEmpty()) billingView.setVisible(false);
             } catch (IOException ex) {
                 Logger.getLogger(BillPane.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -194,8 +198,8 @@ public class BillPane extends javax.swing.JPanel {
             writer.write(" * Date of expedition: "+date+"\n");
             writer.write(" * List of products: \n");
             
-            for (Product product : bill.getProducts()) {
-                writer.write(" \t* "+product.getProductName()+" - "+product.getPrice()+"€ \n");
+            for (String product : bill.getProducts()) {
+                writer.write(" \t* "+product+" \n");
             }
             writer.write(" * Total Price:"+bill.getTotalPrice()+"€ \n");
             writer.write(" \t\t¡¡¡Thank you so much for your shopping!!!\n");

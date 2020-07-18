@@ -18,5 +18,6 @@ public interface Control {
     public boolean addItemsToShoppingCart(User user);
     public List<Bill> getAllBills();
     public boolean createNewBill(Bill bill);
-    public boolean validateAllBills(Bill bill);
+    public boolean validateBills(Bill bill);
+    public boolean updateUser(User user);
 }

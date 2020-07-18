@@ -18,14 +18,19 @@ public class BillingView extends javax.swing.JFrame {
     public BillingView(Control control) {
         this.control = control;
         initComponents();
+        setTitle("- CHECKOUT VALIDATION -");
     }
     
     private void addBillsToTheInterface(){
         List<Bill> bills = control.getAllBills();
         
         bills.forEach((bill) -> {
-            tabbedPane.add(new BillPane(control, bill), "#"+bill.getId());
+            tabbedPane.add(new BillPane(this, control, bill), "#"+bill.getId());
         });
+    }
+    
+    public void removeSelectedTab(){
+        tabbedPane.remove(tabbedPane.getSelectedComponent());
     }
 
     /**
@@ -39,7 +44,7 @@ public class BillingView extends javax.swing.JFrame {
 
         tabbedPane = new javax.swing.JTabbedPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         addBillsToTheInterface();
 
@@ -63,6 +68,6 @@ public class BillingView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane tabbedPane;
+    public static javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,5 @@
 package Model.User;
 
-import Main.RC4;
 import Model.Connection;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -62,6 +61,11 @@ public class QueryUserImpl implements QueryUser {
     public User getUser(String name){
         query = connection.createQuery("SELECT u FROM User u WHERE u.userName = \""+name+"\"");
         return (User) query.getSingleResult();
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        return signUpUser(user);
     }
     
 }

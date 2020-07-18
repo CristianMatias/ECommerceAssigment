@@ -4,8 +4,11 @@ import Control.Control;
 import Model.Bill.Bill;
 import Model.Product.Product;
 import Model.User.User;
+import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 /**
  *
@@ -25,6 +28,7 @@ public class ShopView extends javax.swing.JFrame {
         this.control = control;
         this.user = user;
         initComponents();
+        setTitle("SHOP S.L - Checkout -");
     }
 
     /**
@@ -140,20 +144,12 @@ public class ShopView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
-        Bill newBill = new Bill();
-        newBill.setProducts(user.getProducts());
-        newBill.setUser(user);
-        newBill.setTotalPrice(getTotalPrice());
-        newBill.setDirectionBuyer(directionField.getText());
-        newBill.setPaymentMethod((String) paymentCombo.getSelectedItem());
-        
-        if(control.createNewBill(newBill)){
-            JOptionPane.showMessageDialog(null, "¡Muchas gracias por su compra!");
-            user.getProducts().clear();
-            new ViewImpl(control, user).setVisible(true);
-            this.dispose();
-        } else JOptionPane.showMessageDialog(null, "Ha habido un error en su compra.\n "
+        if(checkAddress()){
+            Bill newBill = createBill();
+            if(control.createNewBill(newBill)) sendConfirmationMessage();
+            else JOptionPane.showMessageDialog(null, "Ha habido un error en su compra.\n "
                 + "Por favor, intentelo más tarde");
+        }
     }//GEN-LAST:event_buyButtonActionPerformed
 
     private void removeButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtomActionPerformed
@@ -165,6 +161,44 @@ public class ShopView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeButtomActionPerformed
     
+    private Bill createBill(){
+        Bill newBill = new Bill();
+        newBill.setProducts(setProducts());
+        newBill.setUser(user);
+        newBill.setTotalPrice(getTotalPrice());
+        newBill.setDirectionBuyer(directionField.getText());
+        newBill.setPaymentMethod((String) paymentCombo.getSelectedItem());
+        
+        return newBill;
+    }
+    
+    private List<String> setProducts(){
+        List<String> products = new ArrayList<>();
+        
+        user.getProducts().forEach((product) -> {
+            products.add(product.getProductName()+" - "+product.getCategory()+" - "+product.getPrice()+"€");
+        });
+        
+        return products;
+    }
+    
+    private boolean checkAddress(){
+        if(directionField.getText().length() == 0){
+            directionField.setText("Must fill the direction!");
+            directionField.setBorder(BorderFactory.createLineBorder(Color.red));
+            return false;
+        }
+        else return true;
+    }
+    
+    private void sendConfirmationMessage(){
+        JOptionPane.showMessageDialog(null, "¡Muchas gracias por su compra!");
+        user.getProducts().clear();
+        control.updateUser(user);
+        new ViewImpl(control, user).setVisible(true);
+        this.dispose();
+    }
+    
     private void removeItem(String name){
         if(!name.equals("User data")){         
             for(Iterator<Product> iterator = user.getProducts().iterator(); iterator.hasNext();){
@@ -175,9 +209,7 @@ public class ShopView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Item deleted from the list");
                     billInfo.setText("Total (€): "+getTotalPrice());
                 }
-                    
             }
-            
         }
     }
     

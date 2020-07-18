@@ -25,6 +25,7 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView(Control control) {
         initComponents();
         this.control = control;
+        setTitle("LOG IN / SIGN UP");
     }
 
     /**
