@@ -30,16 +30,14 @@
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="paymentFiedl" alignment="0" pref="175" max="32767" attributes="0"/>
-                              <Component id="addressField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="codeField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="priceField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="userField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="dateField" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="paymentFiedl" alignment="0" max="32767" attributes="0"/>
+                          <Component id="addressField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="codeField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="priceField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="userField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dateField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="236" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -47,7 +45,7 @@
                       <Component id="validateButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -161,6 +159,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="validateButton">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Validate"/>
       </Properties>
       <Events>

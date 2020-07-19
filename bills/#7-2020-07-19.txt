@@ -1,0 +1,10 @@
+ * Bill code: #7
+ * Costumer's Name: Admin
+ * Payment method: PayPal
+ * Date of creation: 2020-07-19
+ * Date of expedition: 2020-07-19
+ * List of products: 
+ 	* Bici0002 - CDMM0002 - 2000.0€ 
+ 	* Bola Navidad - CDMMBola0001 - 40.0€ 
+ * Total Price:2040.0€ 
+ 		¡¡¡Thank you so much for your shopping!!!

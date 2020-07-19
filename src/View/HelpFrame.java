@@ -30,6 +30,7 @@ public class HelpFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(500, 0));
+        setResizable(false);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -37,6 +38,7 @@ public class HelpFrame extends javax.swing.JFrame {
         jTextArea1.setText(" * You have to be registrered to be able to buy items\n* To add an Item to your shopping cart you have to:\n\t1st - Select the item\n\t2nd - Click the button with the cart and an arrow\n\t3rd - Your item will be added to the cart inmidietly\n* To validate checkouts (Admins only) go to File -> Checkouts\n* To Logout of the application click the buttom with your user name");
         jScrollPane1.setViewportView(jTextArea1);
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

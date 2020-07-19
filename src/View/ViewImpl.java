@@ -3,9 +3,12 @@ package View;
 import Control.Control;
 import Model.Product.Product;
 import Model.User.User;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -60,7 +63,9 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
+        signButton.setBackground(new java.awt.Color(204, 204, 204));
         signButton.setText("Sign Up/In");
         signButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,12 +73,13 @@ public class ViewImpl extends javax.swing.JFrame implements View{
             }
         });
 
+        tableProducts.setBackground(new java.awt.Color(255, 255, 255));
         tableProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Code", "Name", "Description", "Category", "Price"
+                "Code", "Name", "Description", "Category", "Price (€)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -87,11 +93,22 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         jScrollPane1.setViewportView(tableProducts);
         if (tableProducts.getColumnModel().getColumnCount() > 0) {
             tableProducts.getColumnModel().getColumn(0).setResizable(false);
+            tableProducts.getColumnModel().getColumn(0).setPreferredWidth(10);
             tableProducts.getColumnModel().getColumn(1).setResizable(false);
+            tableProducts.getColumnModel().getColumn(2).setResizable(false);
+            tableProducts.getColumnModel().getColumn(2).setPreferredWidth(120);
             tableProducts.getColumnModel().getColumn(3).setResizable(false);
             tableProducts.getColumnModel().getColumn(4).setResizable(false);
+            tableProducts.getColumnModel().getColumn(4).setPreferredWidth(30);
         }
+        tableProducts.getTableHeader().setBackground(Color.ORANGE);
+        DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
 
+        for(int i=0;i<5;i++)
+        tableProducts.getColumnModel().getColumn(i).setCellRenderer(Alinear);
+
+        shoppingButton.setBackground(new java.awt.Color(204, 204, 204));
         shoppingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/shopping-cart.png"))); // NOI18N
         shoppingButton.setText("(0)");
         shoppingButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +117,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
             }
         });
 
+        searchButton.setBackground(new java.awt.Color(204, 204, 204));
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/search.png"))); // NOI18N
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +131,7 @@ public class ViewImpl extends javax.swing.JFrame implements View{
             }
         });
 
+        addItem.setBackground(new java.awt.Color(204, 204, 204));
         addItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/buy.png"))); // NOI18N
         addItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,17 +179,19 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(nameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                         .addComponent(signButton)
                         .addGap(18, 18, 18)
                         .addComponent(shoppingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))

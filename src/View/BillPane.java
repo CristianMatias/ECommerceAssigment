@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +24,7 @@ public class BillPane extends javax.swing.JPanel {
     
     /**
      * Creates new form BillPane
+     * @param billingView
      * @param control
      * @param bill
      */
@@ -96,6 +96,7 @@ public class BillPane extends javax.swing.JPanel {
         productsField.setRows(5);
         jScrollPane1.setViewportView(productsField);
 
+        validateButton.setBackground(new java.awt.Color(204, 204, 204));
         validateButton.setText("Validate");
         validateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,19 +121,18 @@ public class BillPane extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel7))
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(paymentFiedl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                .addComponent(addressField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(codeField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(priceField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(userField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dateField, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(paymentFiedl, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addressField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codeField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(priceField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(126, 126, 126)
                         .addComponent(validateButton)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

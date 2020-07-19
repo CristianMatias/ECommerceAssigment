@@ -46,24 +46,18 @@ public class ShopView extends javax.swing.JFrame {
         directionField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         paymentCombo = new javax.swing.JComboBox<>();
-        buyButton = new javax.swing.JButton();
         billInfo = new javax.swing.JLabel();
         removeButtom = new javax.swing.JButton();
+        buyButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Direction:");
 
         jLabel2.setText("Payment method:");
 
         paymentCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PayPal", "MasterCard", "Tarjeta Debito", "Contrareembolso", "Cuenta Bancaria" }));
-
-        buyButton.setText("Buy current Items");
-        buyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buyButtonActionPerformed(evt);
-            }
-        });
 
         billInfo.setText("Total (€): ");
         billInfo.setText("Total (€): "+getTotalPrice());
@@ -74,18 +68,16 @@ public class ShopView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(33, 33, 33)
-                            .addComponent(directionField, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(27, 27, 27)
-                            .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(billInfo)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(33, 33, 33)
+                        .addComponent(directionField, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(27, 27, 27)
+                        .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(billInfo))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,19 +93,26 @@ public class ShopView extends javax.swing.JFrame {
                     .addComponent(paymentCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(billInfo)
-                .addGap(18, 18, 18)
-                .addComponent(buyButton)
-                .addGap(9, 9, 9))
+                .addGap(59, 59, 59))
         );
 
         tabbedpane.addTab("User data", jPanel1);
 
         readProductsFromUser();
 
+        removeButtom.setBackground(new java.awt.Color(204, 204, 204));
         removeButtom.setText("Remove Item");
         removeButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeButtomActionPerformed(evt);
+            }
+        });
+
+        buyButton.setBackground(new java.awt.Color(204, 204, 204));
+        buyButton.setText("Buy current Items");
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
             }
         });
 
@@ -126,8 +125,10 @@ public class ShopView extends javax.swing.JFrame {
                 .addComponent(tabbedpane, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
-                .addGap(197, 197, 197)
+                .addGap(101, 101, 101)
                 .addComponent(removeButtom)
+                .addGap(42, 42, 42)
+                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,7 +137,9 @@ public class ShopView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tabbedpane, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(removeButtom)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeButtom)
+                    .addComponent(buyButton))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -186,6 +189,7 @@ public class ShopView extends javax.swing.JFrame {
         if(directionField.getText().length() == 0){
             directionField.setText("Must fill the direction!");
             directionField.setBorder(BorderFactory.createLineBorder(Color.red));
+            tabbedpane.setSelectedIndex(0);
             return false;
         }
         else return true;

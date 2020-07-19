@@ -45,6 +45,7 @@ public class BillingView extends javax.swing.JFrame {
         tabbedPane = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         addBillsToTheInterface();
 
