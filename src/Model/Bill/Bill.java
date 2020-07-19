@@ -2,8 +2,11 @@ package Model.Bill;
 
 import Model.User.User;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -41,7 +44,9 @@ public class Bill implements Serializable {
     private List<String> products;
 
     public Bill() {
-        this.dateCreation = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        this.dateCreation = dateFormat.format(date);
     }
 
     public int getId() {

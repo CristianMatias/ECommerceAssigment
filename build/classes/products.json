@@ -1,0 +1,133 @@
+[{
+   "id":"1",
+   "productName":"Producto_1",
+   "category":"ORO",
+   "description":"Sin descricion",
+   "price":"18"
+},{
+   "id":"2",
+   "productName":"Producto_2",
+   "category":"BRONCE",
+   "description":"Sin descricion",
+   "price":"9"
+},{
+   "id":"3",
+   "productName":"Producto_3",
+   "category":"PLATA",
+   "description":"Sin descricion",
+   "price":"20"
+},{
+   "id":"4",
+   "productName":"Bici0001",
+   "category":"CDMM0001",
+   "description":"Bici1",
+   "price":"1000"
+},{
+   "id":"5",
+   "productName":"Bici0002",
+   "category":"CDMM0002",
+   "description":"Bici 2",
+   "price":"2000"
+},{
+   "id":"6",
+   "productName":"Bici0003",
+   "category":"CDMM0003",
+   "description":"Bici 3",
+   "price":"1000"
+},{
+   "id":"7",
+   "productName":"Patin0001",
+   "category":"CDMMPatin0001",
+   "description":"Patin 1",
+   "price":"1000"
+},{
+   "id":"8",
+   "productName":"Patin0002",
+   "category":"CDMMPatin0002",
+   "description":"Patin 2",
+   "price":"2000"
+},{
+   "id":"10",
+   "productName":"Patin0003",
+   "category":"CDMMPatin0003",
+   "description":"Patin 3",
+   "price":"500"
+},{
+   "id":"11",
+   "productName":"Vespa0001",
+   "category":"CDMMSiglas0001",
+   "description":"Moto Vespa 4",
+   "price":"4000"
+},{
+   "id":"12",
+   "productName":"Cepillo0001",
+   "category":"CDMMCepillo0001",
+   "description":"Cepillo de Dientes 1",
+   "price":"0"
+},{
+   "id":"13",
+   "productName":"Cepillo0002",
+   "category":"CDMMCepillo0002",
+   "description":"Cepillo de Dientes 2",
+   "price":"0"
+},{
+   "id":"14",
+   "productName":"Esponja0001",
+   "category":"CDMMEsponja0001",
+   "description":"Esponjas de Ba&ntilde;o 1",
+   "price":"1"
+},{
+   "id":"15",
+   "productName":"Esponja0002",
+   "category":"CDMMEsponja0002",
+   "description":"Esponja de Ba&ntilde;o 2",
+   "price":"2"
+},{
+   "id":"16",
+   "productName":"Gorra0001",
+   "category":"CDMMGorra0001",
+   "description":"Gorra con visera",
+   "price":"40"
+},{
+   "id":"17",
+   "productName":"Bola Navidad",
+   "category":"CDMMBola0001",
+   "description":"Bola decoracion de Navidad",
+   "price":"40"
+},{
+   "id":"18",
+   "productName":"ProdExamen4CDMM",
+   "category":"ProdExamen4CDMM",
+   "description":"Sin descricion",
+   "price":"0"
+},{
+   "id":"33",
+   "productName":"Maquinilla de afeitar",
+   "category":"ORO",
+   "description":"Maquina de afeitar",
+   "price":"12"
+},{
+   "id":"34",
+   "productName":"Nintendo PlayBox",
+   "category":"ORO",
+   "description":"Consola",
+   "price":"600"
+},{
+   "id":"35",
+   "productName":"Falloutsito Nueva Vegashion",
+   "category":"PLATA",
+   "description":"Videojuego",
+   "price":"60"
+},{
+   "id":"36",
+   "productName":"Humanoide Quinto, El Real",
+   "category":"DIAMANTE",
+   "description":"Juegaso",
+   "price":"61"
+},{
+   "id":"39",
+   "productName":"profe",
+   "category":"ORO",
+   "description":"prueba",
+   "price":"12"
+}]

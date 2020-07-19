@@ -34,7 +34,7 @@ public class HelpFrame extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText(" * You have to be registrered to be able to buy items\n* To add an Item to your shopping cart you have to:\n\t1st - Select the item\n\t2nd - Click the button with the cart and an arrow\n\t3rd - Your item will be added to the cart inmidietly");
+        jTextArea1.setText(" * You have to be registrered to be able to buy items\n* To add an Item to your shopping cart you have to:\n\t1st - Select the item\n\t2nd - Click the button with the cart and an arrow\n\t3rd - Your item will be added to the cart inmidietly\n* To validate checkouts (Admins only) go to File -> Checkouts\n* To Logout of the application click the buttom with your user name");
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("OK");

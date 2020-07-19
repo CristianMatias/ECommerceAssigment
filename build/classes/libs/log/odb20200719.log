@@ -1,0 +1,89 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-07-19 14:40:25 #1 store] 
+Database 'C:\Users\Cristian\Documents\NetBeansProjects\EcommerceAssigment\src\ecommerce.odb' is opened by 9556@LAPTOP-Q2NAPBIR
+
+[2020-07-19 14:40:25 #2 store] 
+Configuration path: ?
+
+[2020-07-19 14:40:25 #3 type] 
+Type Model.Product.Product is not enhanced.
+
+[2020-07-19 14:40:25 #4 type] 
+Type Model.User.User is not enhanced.
+
+[2020-07-19 14:40:49 #5 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2020-07-19 14:40:49 #6 type.registry] 
+New type java.util.ArrayList<Model.Product.Product>
+
+[2020-07-19 14:42:18 #7 type.registry] 
+New type Model.Bill.Bill
+
+[2020-07-19 14:42:18 #8 type] 
+Type Model.Bill.Bill is not enhanced.
+
+[2020-07-19 14:42:18 #9 type.registry] 
+New type java.util.ArrayList<java.lang.String>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-07-19 15:07:39 #1 store] 
+Database 'C:\Users\Cristian\Documents\NetBeansProjects\EcommerceAssigment\src\ecommerce.odb' has been recovered (tr. 29-38)
+
+[2020-07-19 15:07:39 #2 store] 
+Database 'C:\Users\Cristian\Documents\NetBeansProjects\EcommerceAssigment\src\ecommerce.odb' is opened by 10948@LAPTOP-Q2NAPBIR
+
+[2020-07-19 15:07:39 #3 store] 
+Configuration path: ?
+
+[2020-07-19 15:07:40 #4 type] 
+Type Model.Product.Product is not enhanced.
+
+[2020-07-19 15:07:40 #5 type] 
+Type Model.User.User is not enhanced.
+
+[2020-07-19 15:07:40 #6 type] 
+Type Model.Bill.Bill is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-07-19 15:32:49 #1 store] 
+Database 'C:\Users\Cristian\Documents\NetBeansProjects\EcommerceAssigment\src\ecommerce.odb' has been recovered (tr. 39-45)
+
+[2020-07-19 15:32:50 #2 store] 
+Database 'C:\Users\Cristian\Documents\NetBeansProjects\EcommerceAssigment\src\ecommerce.odb' is opened by 7732@LAPTOP-Q2NAPBIR
+
+[2020-07-19 15:32:50 #3 store] 
+Configuration path: ?
+
+[2020-07-19 15:32:51 #4 type] 
+Type Model.Product.Product is not enhanced.
+
+[2020-07-19 15:32:51 #5 type] 
+Type Model.User.User is not enhanced.
+
+[2020-07-19 15:32:51 #6 type] 
+Type Model.Bill.Bill is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-07-19 15:44:01 #1 store] 
+Database 'C:\Users\Cristian\Documents\NetBeansProjects\EcommerceAssigment\src\ecommerce.odb' has been recovered (tr. 46-50)
+
+[2020-07-19 15:44:02 #2 store] 
+Database 'C:\Users\Cristian\Documents\NetBeansProjects\EcommerceAssigment\src\ecommerce.odb' is opened by 9932@LAPTOP-Q2NAPBIR
+
+[2020-07-19 15:44:02 #3 store] 
+Configuration path: ?
+
+[2020-07-19 15:44:03 #4 type] 
+Type Model.Product.Product is not enhanced.
+
+[2020-07-19 15:44:03 #5 type] 
+Type Model.User.User is not enhanced.
+
+[2020-07-19 15:44:03 #6 type] 
+Type Model.Bill.Bill is not enhanced.
+

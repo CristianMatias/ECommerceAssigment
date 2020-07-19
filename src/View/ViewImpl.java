@@ -51,7 +51,6 @@ public class ViewImpl extends javax.swing.JFrame implements View{
         shoppingButton = new javax.swing.JButton();
         searchButton = new javax.swing.JButton();
         nameSearch = new javax.swing.JTextField();
-        loadProducts = new javax.swing.JButton();
         addItem = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -114,13 +113,6 @@ public class ViewImpl extends javax.swing.JFrame implements View{
             }
         });
 
-        loadProducts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/product.png"))); // NOI18N
-        loadProducts.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadProductsActionPerformed(evt);
-            }
-        });
-
         addItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/img/buy.png"))); // NOI18N
         addItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,17 +162,15 @@ public class ViewImpl extends javax.swing.JFrame implements View{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(nameSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(loadProducts)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(signButton)
                         .addGap(18, 18, 18)
                         .addComponent(shoppingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -190,15 +180,14 @@ public class ViewImpl extends javax.swing.JFrame implements View{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(signButton)
-                            .addComponent(shoppingButton)
-                            .addComponent(loadProducts)
-                            .addComponent(addItem))
+                            .addComponent(shoppingButton))
                         .addComponent(nameSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchButton))
+                    .addComponent(searchButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addItem, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -215,10 +204,6 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         prepareTable(control.getProductsByName(nameSearch.getText()), (DefaultTableModel) tableProducts.getModel());
     }//GEN-LAST:event_searchButtonActionPerformed
-
-    private void loadProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadProductsActionPerformed
-        prepareTable(control.getAllProducts(), (DefaultTableModel) tableProducts.getModel());
-    }//GEN-LAST:event_loadProductsActionPerformed
 
     private void nameSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_nameSearchCaretUpdate
         if(nameSearch.getText() != null) searchButtonActionPerformed(new ActionEvent(evt, WIDTH, ""));
@@ -334,7 +319,6 @@ public class ViewImpl extends javax.swing.JFrame implements View{
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton loadProducts;
     private javax.swing.JTextField nameSearch;
     private javax.swing.JButton searchButton;
     private javax.swing.JButton shoppingButton;

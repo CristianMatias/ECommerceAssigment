@@ -2,12 +2,14 @@ package View;
 
 import Control.Control;
 import Model.Bill.Bill;
-import Model.Product.Product;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -183,15 +185,16 @@ public class BillPane extends javax.swing.JPanel {
     }//GEN-LAST:event_validateButtonActionPerformed
 
     private void createBillFile() throws IOException{
-        String date = Calendar.YEAR+"-"+Calendar.MONTH+"-"+Calendar.DAY_OF_MONTH;
-        File file = new File("bills/#"+bill.getId()+"-"+date+"-"+Calendar.HOUR_OF_DAY+"-"+Calendar.MINUTE+".txt");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        File file = new File("bills/#"+bill.getId()+"-"+dateFormat.format(date)+".txt");
         file.createNewFile();
-        writeInformation(file, date);
+        writeInformation(file, dateFormat.format(date));
     }
     
     private void writeInformation(File file, String date) throws IOException{
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(" * Bill code: "+bill.getId()+"\n");
+            writer.write(" * Bill code: #"+bill.getId()+"\n");
             writer.write(" * Costumer's Name: "+bill.getUser().getUserName()+"\n");
             writer.write(" * Payment method: "+bill.getPaymentMethod()+"\n");
             writer.write(" * Date of creation: "+bill.getDateCreation()+"\n");
